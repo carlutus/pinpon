@@ -38,6 +38,12 @@ class Paciente:
 
     @prevision.setter
     def prevision(self,prevision:str)-> None:
+        if not isistance(prevision,str):
+            raise typeError("La prevision debe ser una cadena de texto.")
+        prevision_limpio = prevision.strip().capitalize()
+        if prevision_limpio not in self.PREVISIONES_VALIDAS:
+            opciones = ",". join(self.PREVISIONES_VALIDAS)
+            raise ValueError(f"Prevision '{prevision}' no valido. Opciones  permitidas: {opciones}.
         self._prevision=prevision
 
     def __str__(self)-> str:
